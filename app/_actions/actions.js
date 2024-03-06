@@ -14,12 +14,10 @@ export async function createTodo(formData) {
 }
 
 export async function updateTodo(content, id) {
-  const { data } = await cookieBasedClient.models.Todo.update(
-    { id },
-    {
-      content: content || "",
-    }
-  );
+  const { data } = await cookieBasedClient.models.Todo.update({
+    id,
+    content: content || "",
+  });
   console.log("update todo data", data);
   redirect("/todos");
 }
@@ -29,6 +27,6 @@ export async function onDeleteTodo(id) {
     id,
   });
 
-  console.log("data deleted", id, data, errors);
+  console.log(id, data, errors);
   revalidatePath("/todos");
 }

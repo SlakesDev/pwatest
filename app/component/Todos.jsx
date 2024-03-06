@@ -1,14 +1,8 @@
-"use client";
-
 import Link from "next/link";
+import React from "react";
 import Delete from "./Delete";
-import { todoStore } from "../store";
 
 export default async function Todos({ onDeleteTodo, todos }) {
-  const { setCurrentTodo } = todoStore();
-
-  console.log(todos);
-
   return (
     <div className=" w-full h-screen justify-center items-center flex flex-col gap-2">
       {todos?.map(({ content, id }) => (
@@ -19,9 +13,6 @@ export default async function Todos({ onDeleteTodo, todos }) {
           <div className=" flex flex-col gap-1">
             <p className=" capitalize">{content}</p>
             <Link
-              onClick={() => {
-                setCurrentTodo(content);
-              }}
               href={`/details/${id}`}
               className=" text-sm underline capitalize"
             >
